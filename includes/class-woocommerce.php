@@ -209,7 +209,7 @@ final class WooCommerce {
         add_filter( 'woocommerce_rest_prepare_note', array( 'WC_Admin_Notices', 'prepare_note_with_nonce' ) );
         add_filter( 'wp_plugin_dependencies_slug', array( $this, 'convert_woocommerce_slug' ) );
 	}
-	
+
 	/**
 	 * Some plugins block loading of menu.css causing the CC menu icon to display incorrectly.
 	 * Here we add the necessary style to ensure the icon style is loaded.
@@ -498,6 +498,11 @@ final class WooCommerce {
 			$this->frontend_includes();
 		}
 
+        /**
+		 * Classic Store code
+		 */
+        include_once WC_ABSPATH . 'includes/classic-store/class-cs-compat.php';
+
 		$this->theme_support_includes();
 		$this->query = new WC_Query();
 		$this->api   = new WC_API();
@@ -533,6 +538,8 @@ final class WooCommerce {
 			}
 		}
 	}
+
+
 
 	/**
 	 * Include required frontend files.
